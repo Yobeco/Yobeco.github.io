@@ -1,0 +1,37 @@
+#lecteurSon {
+  display: none;
+}
+
+#buttonsContainer {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+     background-color: rgb(230,247,255);
+     border-radius: 10px;
+     height: 60px; /* Remplacez 50px par la hauteur souhaitée */
+}
+
+.buttons{
+     padding: 10px;
+     margin:10px;
+     border-radius: 10px;
+}
+     
+#pictureContainer {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+     background-color: rgb(255,242,230);
+     border-radius: 10px;
+     padding-top: 30px;
+     padding-bottom: 30px;
+     margin-top: 10px;
+}
+
+#picture {
+  max-width: 100%;
+  max-height: 564px; /* Remplacez 400px par la hauteur maximale souhaitée */
+}
+

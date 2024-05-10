@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mathison V 0.2</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+  <body>
+
+    <div id=buttonsContainer> 
+
+      <audio id="lecteurAudio" controls tabindex="-1"  preload="auto">
+        <source src="Medias/Madison.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+      </audio>
+
+      <audio id="lecteurSon" controls tabindex="-1"  preload="auto">
+        <source src="Medias/Change.mp3" type="audio/mpeg">
+      </audio>
+
+      <button class="buttons" onclick="stopAudio()">Stop</button>
+
+    </div>
+
+    <div id=pictureContainer tabindex="0"> 
+
+      <img id=picture src="Medias/LogoMathison.png">
+
+    </div>
+
+  </body>
+
+      <script type="text/javascript" src="script.js"></script>
+
+</html>
