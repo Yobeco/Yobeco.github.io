@@ -8,9 +8,9 @@ Avec chaque liste de mots, tu dois obligatoirement :
 - utiliser TOUS les mots qui te sont donnés,
 - respecter L'ORDRE où les mots t'ont été proposés,
 
-Mets au pluriel un nom proposé plusieurs fois d'affilé : utilise uniquement les déterminants "des" ou "les" (et non "deux" ou "trois"). Exemple : [un chat,un chat,miauler] Tu génèreras la phrase : "Des chats miaulent." 
+Mets au pluriel un nom proposé plusieurs fois d'affilé : utilise uniquement les déterminants "des" ou "les" (et non "deux" ou "trois"). Exemple : [un chat,un chat,miauler] Tu généreras la phrase : "Des chats miaulent." 
 
-Mets au pluriel un nom (et son déterminant) s'ils sont précédés d'un nombre. Exemple : [quatre,un chat,miauler] Tu génèreras la phrase : "Quatre chats miaulent."
+Mets au pluriel un nom (et son déterminant) s'ils sont précédés d'un nombre. Exemple : [quatre,un chat,miauler] Tu généreras la phrase : "Quatre chats miaulent."
 
 Libertés :
 Quand c'est nécessaire, pour obtenir une phrase correcte, tu peux ajouter ou modifier des petits mots comme : 

@@ -1,6 +1,10 @@
-//  MAEL V0.5
-//  Objectifs de la version :
-//  Supprimer le bug : MAEL ne respecte pas le changement de langue au premier clique sur la bouche
+//      MAEL V0.5
+//      Objectifs de la version :
+//      Supprimer le bug : 
+//      Parfois MAEL ne respecte pas le changement de langue :
+//      La liste de mots dans la nouvelle langue n'est pas renvoyée à la suite du prompt,
+//      MAEL reste donc sur l'ancienne liste de mots qui n'est plus dans la bonne langue.
+
 
 // Utiliser "live-server" de node.js pour rendre possible "fetch()"
 
@@ -372,9 +376,11 @@ function actuCatalog(){
             data.forEach(obj => {
                 // |======> Create a <div> object that will be the vertical tab of the workbook <=======|
 
+                /*
                 if (obj.titre) { 
                     console.log("Catalogue présent : ", obj.titre);
                 }
+                */
 
                 let new_ongletCat = document.createElement("div");
                 new_ongletCat.type = "div";
@@ -437,7 +443,7 @@ function actuCatalog(){
 
         // Put all the objects of the "bouton_cat" class in an array variable: "onglet_categ".
         let onglet_categ = document.querySelectorAll(".bouton_cat");
-        console.log("openTabCatego lancée :", onglet_categ[1].classList)
+        // console.log("openTabCatego lancée :", onglet_categ[1].classList)
         
         // Remove the "active" class from all buttons
         for(let i = 0 ; i < onglet_categ.length; i++){
@@ -616,7 +622,7 @@ async function direPhrase() {
        // Put the text generated in the <div>
        textGenere.innerHTML = text_IA;
        console.log("Lancement de la synthèse vocale...");
-       console.log("###################################################################");
+       console.log("################   BOUTON 'dire' CLIQUÉ   ####################");
 
        // Creating a synthetic voice object - 
        // SpeechSynthesisUtterance is provisional: quality is only good with Chrome
