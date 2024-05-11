@@ -1,3 +1,11 @@
+//  MAEL V0.5
+//  Objectifs de la version :
+//  Supprimer le bug : MAEL ne respecte pas le changement de langue au premier clique sur la bouche
+
+// Utiliser "live-server" de node.js pour rendre possible "fetch()"
+
+// #########################################################################################################
+
 // Import the function responsible for finding word translations in JSON files
 import { tradFromId } from './json_search.js';
 
@@ -576,7 +584,6 @@ async function liste_to_AI(txt0) {
     // For text-only input, use the gemini-pro model
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
-    // Planned : Export the prompt to a separate file and eliminate line breaks
     const promptToSend = prompt_1 + txt0
     console.log("Prompt envoyé : ", promptToSend)
     const result = await model.generateContent(promptToSend);
@@ -589,7 +596,10 @@ async function liste_to_AI(txt0) {
 
 // ##################################################################
 
+// Variable recevant la phrase générée par l'IA
 let text_IA = "";
+
+// Fonction lancée au clic sur le bouton id="dire"
 
 async function direPhrase() {
 
@@ -601,11 +611,12 @@ async function direPhrase() {
 
        text_IA = await liste_to_AI(text);
 
-       console.log(text_IA)
+       console.log("text_IA : " + text_IA)
 
        // Put the text generated in the <div>
        textGenere.innerHTML = text_IA;
        console.log("Lancement de la synthèse vocale...");
+       console.log("###################################################################");
 
        // Creating a synthetic voice object - 
        // SpeechSynthesisUtterance is provisional: quality is only good with Chrome
