@@ -593,8 +593,8 @@ async function liste_to_AI(txt0) {
 
     await chargPrompt();
     
-    // For text-only input, use the gemini-pro model
-    const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+    // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts (depuis mars 2025)
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
     const promptToSend = promptAI + txt0           // Ajouter la liste de mots à la fin du prompt
     console.log("Prompt ENVOYÉ : ", promptToSend)
