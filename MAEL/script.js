@@ -556,54 +556,67 @@ async function generList(){
 
 // Gemini configuration
 
-
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// Access your API key (see "Set up your API key" above)
-// https://ai.google.dev/tutorials/web_quickstart?hl=fr#set-up-project
+// Initialisation avec votre clé
 const genAI = new GoogleGenerativeAI("AIzaSyAZcOhtqSZQ0pc-R9MnnvWeMcXXUhhmXSE");
 
-// Fetch the prompt from the text file
+let promptAI = ""; 
+// Note : Assurez-vous que 'mitCode' est défini globalement ou passé en paramètre
+let prompt_xxXXX = ""; 
 
-let promptAI = "";      // Global variable to retrieve and use the prompt text
-
-// Initialize the name of the text file containing the prompt, depending on the language.
-let prompt_xxXXX = "prompt_"+ mitCode + ".txt";
-
-// Load prompt to send to AI (and update language if necessary)
+/**
+ * Charge le contenu du fichier texte de prompt
+ */
 async function chargPrompt() {
-
-    prompt_xxXXX = "prompt_"+ mitCode + ".txt";           // Update prompt file name according to language
+    // Mise à jour du nom du fichier selon la langue (mitCode)
+    prompt_xxXXX = "prompt_" + mitCode + ".txt";
     console.log("--> Fichier de prompt utilisé : " + prompt_xxXXX);
 
     try {
         const response = await fetch(prompt_xxXXX);
+        if (!response.ok) throw new Error("Fichier introuvable");
+        
         const data = await response.text();
         promptAI = data;
-        console.log("promptAI mis à : " + truncate(promptAI, 120));     // Afficher les 100 1ers charactères
+        
+        // Utilisation d'une version simplifiée de truncate pour le log
+        console.log("Variable 'promptAI' mise à jour : " + promptAI.substring(0, 120) + "...");
     } catch (error) {
-        console.error('Error with prompt text:', error);
+        console.error('Erreur lors de la récupération du texte du prompt:', error);
     }
 }
 
-// chargPrompt();
-
-// Envoyer le prompt dans la bonne langue suivi de la liste de mots
+/**
+ * Envoie le prompt et la liste de mots à l'API Gemini
+ */
 async function liste_to_AI(txt0) {
-
+    // 1. On attend le chargement du fichier de prompt
     await chargPrompt();
     
-    // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts (depuis mars 2025)
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+    // 2. Utilisation de gemini-2.0-flash (Stable, rapide et gratuit)
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    const promptToSend = promptAI + txt0           // Ajouter la liste de mots à la fin du prompt
-    console.log("Prompt ENVOYÉ : ", promptToSend)
-    const result = await model.generateContent(promptToSend);
-    const response = await result.response;
-    const text = response.text();
-    // console.log(text);
-    return text;
+    // 3. Construction du message final
+    const promptToSend = promptAI + "\n\n" + txt0; 
+    console.log("Prompt ENVOYÉ à l'IA (extrait) : ", promptToSend.substring(0, 100));
+
+    try {
+        // 4. Appel de l'API avec gestion de la réponse moderne
+        const result = await model.generateContent(promptToSend);
+        
+        // Sur le SDK actuel, result.response est déjà l'objet final
+        const response = result.response;
+        const text = response.text(); 
+        
+        return text;
+    } catch (error) {
+        console.error("Erreur API Gemini :", error);
+        // Gestion spécifique si le modèle est surchargé ou le contenu bloqué
+        return "Une erreur est survenue lors de la génération.";
+    }
 }
+
 
 
 // ##################################################################
