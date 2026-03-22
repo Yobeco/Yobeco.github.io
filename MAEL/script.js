@@ -559,7 +559,7 @@ async function generList(){
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // Initialisation avec votre clé
-const genAI = new GoogleGenerativeAI("AIzaSyBj-AsQ9kZxk_TYNpumGZpl9OQsfukdaV0");
+const genAI = new GoogleGenerativeAI("AIzaSyAFeMuZF6rnhQUR0xueYKDQL6XFPIETWSQ");
 
 let promptAI = ""; 
 // Note : Assurez-vous que 'mitCode' est défini globalement ou passé en paramètre
